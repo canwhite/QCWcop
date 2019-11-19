@@ -3,7 +3,7 @@
 <br/>
 ## use
 使用方法很简单:  
-1.根目录下的config.js中填写你公众平台里边获取的appId、appSecret和token
+1.根目录下的config.js中填写你公众平台里边获取的appId、appSecret和token  
 2.加载三方包
 ```
 npm i
