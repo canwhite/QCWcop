@@ -8,8 +8,7 @@
 ```
 npm i
 ```  
-3.一个云服务器，具体的配置在我的CSDN博客里有  
-[阿里云配置](https://blog.csdn.net/dangbai01_/article/details/102821023)  
+3.一个云服务器，具体的配置在我的CSDN博客里有：[阿里云配置](https://blog.csdn.net/dangbai01_/article/details/102821023)  
 ## desc：
 主要模块介绍:  
 
