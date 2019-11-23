@@ -4,7 +4,9 @@
   "description": "test",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env NODE_ENV=dev ./node_modules/.bin/nodemon app.js",
+    "prd": "cross-env NODE_ENV=production ./node_modules/.bin/nodemon app.js"
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +24,9 @@
     "request": "^2.81.0",
     "sha1": "^1.1.1",
     "xml2js": "^0.4.17",
-    "koa-body": "^2.3.0"
+    "koa-body": "^2.3.0",
+    "cross-env": "^5.2.0",
+    "nodemon": "^1.8.1"
   }
+  
 }
