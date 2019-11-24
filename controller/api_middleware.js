@@ -69,7 +69,7 @@ module.exports = function(AS){
        if(!isObjectValueEqual(menuData,menu)){
            var delete_data = await wxApi.deleteMenu();
            console.log('~~~~~~~',delete_data);
-           if(delete_data != 'err' && delete_data){
+           if(delete_data == 'err'){
                var create_data = await wxApi.createMenu(menu);
                console.log('~~~~~~~',create_data);
                if(create_data && create_data != 'err'){
