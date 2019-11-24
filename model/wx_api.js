@@ -51,7 +51,7 @@ WXApi.prototype.createMenu = function(menu){
 				if(_data.errcode === 0){
 					resolve(_data.errmsg);
 				}else{
-					reject('err');
+					resolve('err');
 				}
 			}).catch(function(err){
 				reject('err');
@@ -96,7 +96,7 @@ WXApi.prototype.deleteMenu = function(){
 				if(_data.errcode === 0){
 					resolve(_data.errmsg);
 				}else{
-					reject('err');
+					resolve('err');
 				}
 			}).catch(function(err){
 				reject('err');
