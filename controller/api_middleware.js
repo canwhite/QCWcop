@@ -62,23 +62,24 @@ module.exports = function(AS){
                /*
             先去获取菜单
         */
-       /*
        var menuData = await wxApi.getMenu();
        //如果前比对不一致
-       if(!isObjectValueEqual(menuData,menu)){
-           var delete_data = await wxApi.deleteMenu();
-           if(delete_data != 'err' && delete_data){
-               var create_data = await wxApi.createMenu(menu);
-               if(create_data && create_data != 'err'){
-                   console.log('创建菜单成功');
-               }else{
-                   console.log('创建菜单失败');
-               }
-           }
-       }
+    //    if(!isObjectValueEqual(menuData,menu)){
+    //        var delete_data = await wxApi.deleteMenu();
+    //        if(delete_data != 'err' && delete_data){
+    //            var create_data = await wxApi.createMenu(menu);
+    //            if(create_data && create_data != 'err'){
+    //                console.log('创建菜单成功');
+    //            }else{
+    //                console.log('创建菜单失败');
+    //            }
+    //        }
+    //    }
+        var create_data = await wxApi.createMenu(menu);
+
         
 
-       */
+
         //如果别人发送过来的是文本内容
         if(message.MsgType == 'text'){
             var createTime = new Date().getTime();
