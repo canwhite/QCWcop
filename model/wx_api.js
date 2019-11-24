@@ -75,7 +75,7 @@ WXApi.prototype.getMenu = function(){
 					resolve(_data.menu);
 				}else{
 					console.log('~~~~~~5');
-					reject('err');
+					resolve('err')
 				}
 			}).catch(function(err){
 				console.log('~~~~~~6');
