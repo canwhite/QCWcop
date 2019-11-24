@@ -4,8 +4,6 @@
 
 var util = require('../utils/util_replay')
 var request = require('bluebird').promisify(require('request'));
-var fs = require('fs');
-var path = require('path');
 var prefix = 'https://api.weixin.qq.com/cgi-bin/';
 var wxapi = {
     //...

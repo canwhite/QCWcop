@@ -63,19 +63,23 @@ module.exports = function(AS){
             先去获取菜单
         */
        var menuData = await wxApi.getMenu();
+       console.log('~~~~~~~',menuData);
+
+
        //如果前比对不一致
-    //    if(!isObjectValueEqual(menuData,menu)){
-    //        var delete_data = await wxApi.deleteMenu();
-    //        if(delete_data != 'err' && delete_data){
-    //            var create_data = await wxApi.createMenu(menu);
-    //            if(create_data && create_data != 'err'){
-    //                console.log('创建菜单成功');
-    //            }else{
-    //                console.log('创建菜单失败');
-    //            }
-    //        }
-    //    }
-        var create_data = await wxApi.createMenu(menu);
+       if(!isObjectValueEqual(menuData,menu)){
+           var delete_data = await wxApi.deleteMenu();
+           console.log('~~~~~~~',delete_data);
+           if(delete_data != 'err' && delete_data){
+               var create_data = await wxApi.createMenu(menu);
+               console.log('~~~~~~~',create_data);
+               if(create_data && create_data != 'err'){
+                   console.log('创建菜单成功');
+               }else{
+                   console.log('创建菜单失败');
+               }
+           }
+       }
 
         
 
