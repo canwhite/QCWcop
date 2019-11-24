@@ -48,57 +48,56 @@ AS.prototype.saveAccessToken = function(content){
 //获取access_token的控制函数
 AS.prototype.fetchAccessToken = async function(){
 
+    
     //进来之后，直接先读
     var data = await this.getAccessToken();
     if(data !='err' && data!='' && data != null && data != undefined){
         if(!this.isvalidAccessToken(data)){
-            var data = await this.updateAccessToken();
+            data = await this.updateAccessToken();
             //判断data
             if(data == 'err'){
-                return;
+                return Promise.reject('err');
             }
             if(data!='' && data !=null && data !=undefined){
                 this.expires_in = data.expires_in;
                 this.accessToken = data.access_token;
                 
+                this.saveAccessToken(JSON.stringify(data));
+                return Promise.resolve(data);
             }
-            this.saveAccessToken(JSON.stringify(data));
         }
     }
-    
 
    //如果有这两个值了看看是不是过期了
    if(this.access_token && this.expires_in){
         //如果无效就去请求
         if(!this.isvalidAccessToken(this)){
-            var data = await this.updateAccessToken();
+            data = await this.updateAccessToken();
             //判断data
             if(data == 'err'){
-                return 'update err';
+                return Promise.reject('err');
             }
             if(data!='' && data !=null && data !=undefined){
                 this.expires_in = data.expires_in;
                 this.accessToken = data.access_token;
+                this.saveAccessToken(JSON.stringify(data));
+                return Promise.resolve(data);
             }
-            this.saveAccessToken(JSON.stringify(data));
-        
         }
    }else{
         //如果这倆值直接为空
-        var data = await this.updateAccessToken();
+        data = await this.updateAccessToken();
         //判断data
         if(data == 'err'){
-            return;
+            return Promise('err');
         }
         if(data!='' && data !=null && data !=undefined){
             this.expires_in = data.expires_in;
             this.accessToken = data.access_token;
             this.saveAccessToken(JSON.stringify(data));
-                
+            return Promise.resolve(data);
         }
-
    }
-
 }
 
 //判断access_token是否有效的函数

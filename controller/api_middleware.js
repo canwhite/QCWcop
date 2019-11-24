@@ -1,6 +1,32 @@
 var rawBody = require('raw-body');
 var parse_util = require('../utils/parse_xml')
 var WXApi = require('../model/wx_api');
+var menu = require('../view_json/menu');
+
+/*
+判断两个对象是否一致
+*/
+
+function isObjectValueEqual(a, b) {
+    var aProps = Object.getOwnPropertyNames(a);
+    var bProps = Object.getOwnPropertyNames(b);
+  
+    if (aProps.length != bProps.length) {
+      return false;
+    }
+  
+    for (var i = 0; i < aProps.length; i++) {
+      var propName = aProps[i];
+  
+      if(a[propName] instanceof Object ){
+              if(!isObjectValueEqual(a[propName],b[propName])) return false;
+      }
+      else if (a[propName] !== b[propName]) {
+        return false;
+      }
+    }
+    return true;
+}
 
 module.exports = function(AS){
 
@@ -11,12 +37,27 @@ module.exports = function(AS){
     */
     return  async (ctx)=>{
         //AS提供始终有效的access_token
-        var access_token = AS.access_token;
         //实际上一进来就应该有一个setmenu的，回头给它加上
-       
-
         //创建一个model对象
-        var wxApi = new WXApi(access_token);
+        var wxApi = new WXApi(AS);
+        
+        /*
+            先去获取菜单
+        */
+        var menuData = await wxApi.getMenu();
+        //如果前比对不一致
+        if(!isObjectValueEqual(menuData,menu)){
+            var delete_data = await wxApi.deleteMenu();
+            if(delete_data != 'err' && delete_data){
+                var create_data = await wxApi.createMenu(menu);
+                if(create_data && create_data != 'err'){
+                    console.log('创建菜单成功');
+                }else{
+                    console.log('创建菜单失败');
+                }
+            }
+        }
+
 
 
         //通过await拿到POST过来异步请求的原始XML数据
@@ -61,23 +102,6 @@ module.exports = function(AS){
 
 
         }
-
-        
-        
-
-
-
-       
-
-
-
-
-    
-
-
-
-
-
 
 
     }

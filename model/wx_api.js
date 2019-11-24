@@ -18,14 +18,12 @@ var wxapi = {
     }
 
 }
-function WXApi(access_token){
+function WXApi(AS){
     
-    this.access_token = access_token;
-    
+    this.AS = AS;
     // this.action();//直接默认就执行了
 
 }
-
 
 
 /*
@@ -42,14 +40,66 @@ WXApi.prototype.replay = (content,message)=>{
 }
 
 /*
-这部分自定义menu
+自定义menu部分
 */
+//创建菜单
+WXApi.prototype.createMenu = function(menu){
+    var that = this;
+	return new Promise(function(resolve,reject){
+		that.AS.fetchAccessToken().then(function(data){
+			var url = wxapi.menu.create + 'access_token=' + data.access_token;
+			request({url:url,method:'POST',body:menu,json:true}).then(function(response){
+				var _data = response.body;
+				if(_data.errcode === 0){
+					resolve(_data.errmsg);
+				}else{
+					reject('err');
+				}
+			}).catch(function(err){
+				reject('err');
+			});
+		});
+	});
+}
+//获取菜单
+WXApi.prototype.getMenu = function(){
+	var that = this;
+	return new Promise(function(resolve,reject){
+		that.AS.fetchAccessToken().then(function(data){
+			var url = wxapi.menu.get + 'access_token=' + data.access_token;
+			request({url:url,json:true}).then(function(response){
+				var _data = response.body;
+				if(_data.menu){
+					resolve(_data.menu);
+				}else{
+					reject('err');
+				}
+			}).catch(function(err){
+				reject('err');
+			});
+		});
+	});
+}
 
-
-
-
-
-
+//删除菜单
+WXApi.prototype.deleteMenu = function(){
+	var that = this;
+	return new Promise(function(resolve,reject){
+		that.AS.fetchAccessToken().then(function(data){
+			var url = wxapi.menu.delete + 'access_token=' + data.access_token;
+			request({url:url,json:true}).then(function(response){
+				var _data = response.body;
+				if(_data.errcode === 0){
+					resolve(_data.errmsg);
+				}else{
+					reject('err');
+				}
+			}).catch(function(err){
+				reject('err');
+			});
+		});
+	});
+}
 
 module.exports = WXApi;
 
