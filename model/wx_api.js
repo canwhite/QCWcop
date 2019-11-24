@@ -61,9 +61,12 @@ WXApi.prototype.createMenu = function(menu){
 }
 //获取菜单
 WXApi.prototype.getMenu = function(){
+	console.log('~~~~~~1');
 	var that = this;
 	return new Promise(function(resolve,reject){
+		console.log('~~~~~~2');
 		that.AS.fetchAccessToken().then(function(data){
+			console.log('~~~~~~3');
 			var url = wxapi.menu.get + 'access_token=' + data.access_token;
 			request({url:url,json:true}).then(function(response){
 				var _data = response.body;

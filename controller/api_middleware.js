@@ -65,7 +65,7 @@ module.exports = function(AS){
        var menuData = await wxApi.getMenu();
        console.log('~~~~~~~',menuData);
 
-
+       /*
        //如果前比对不一致
        if(!isObjectValueEqual(menuData,menu)){
            var delete_data = await wxApi.deleteMenu();
@@ -81,6 +81,7 @@ module.exports = function(AS){
            }
        }
 
+       */
         
 
 
