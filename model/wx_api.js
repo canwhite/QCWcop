@@ -71,11 +71,14 @@ WXApi.prototype.getMenu = function(){
 			request({url:url,json:true}).then(function(response){
 				var _data = response.body;
 				if(_data.menu){
+					console.log('~~~~~~4');
 					resolve(_data.menu);
 				}else{
+					console.log('~~~~~~5');
 					reject('err');
 				}
 			}).catch(function(err){
+				console.log('~~~~~~6');
 				reject('err');
 			});
 		});
