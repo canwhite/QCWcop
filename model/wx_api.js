@@ -42,15 +42,20 @@ WXApi.prototype.replay = (content,message)=>{
 */
 //创建菜单
 WXApi.prototype.createMenu = function(menu){
-    var that = this;
+	var that = this;
+
 	return new Promise(function(resolve,reject){
 		that.AS.fetchAccessToken().then(function(data){
 			var url = wxapi.menu.create + 'access_token=' + data.access_token;
+			console.log("~~~~~~~~~",url);
+			console.log('~~~~~~',menu);
 			request({url:url,method:'POST',body:menu,json:true}).then(function(response){
 				var _data = response.body;
 				if(_data.errcode === 0){
+					console.log('~~~~~s');
 					resolve(_data.errmsg);
 				}else{
+					console.log('~~~~~f');
 					resolve('err');
 				}
 			}).catch(function(err){
