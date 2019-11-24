@@ -41,25 +41,6 @@ module.exports = function(AS){
         //创建一个model对象
         var wxApi = new WXApi(AS);
         
-        /*
-            先去获取菜单
-        */
-        var menuData = await wxApi.getMenu();
-        //如果前比对不一致
-        if(!isObjectValueEqual(menuData,menu)){
-            var delete_data = await wxApi.deleteMenu();
-            if(delete_data != 'err' && delete_data){
-                var create_data = await wxApi.createMenu(menu);
-                if(create_data && create_data != 'err'){
-                    console.log('创建菜单成功');
-                }else{
-                    console.log('创建菜单失败');
-                }
-            }
-        }
-
-
-
         //通过await拿到POST过来异步请求的原始XML数据
         var data = await rawBody(ctx.req,{
             length: ctx.req.length,
@@ -78,6 +59,22 @@ module.exports = function(AS){
                             MsgId: '22536209720399804' }
 
         */
+               /*
+            先去获取菜单
+        */
+       var menuData = await wxApi.getMenu();
+       //如果前比对不一致
+       if(!isObjectValueEqual(menuData,menu)){
+           var delete_data = await wxApi.deleteMenu();
+           if(delete_data != 'err' && delete_data){
+               var create_data = await wxApi.createMenu(menu);
+               if(create_data && create_data != 'err'){
+                   console.log('创建菜单成功');
+               }else{
+                   console.log('创建菜单失败');
+               }
+           }
+       }
         
 
         //如果别人发送过来的是文本内容
