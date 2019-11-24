@@ -62,6 +62,7 @@ module.exports = function(AS){
                /*
             先去获取菜单
         */
+       /*
        var menuData = await wxApi.getMenu();
        //如果前比对不一致
        if(!isObjectValueEqual(menuData,menu)){
@@ -77,6 +78,7 @@ module.exports = function(AS){
        }
         
 
+       */
         //如果别人发送过来的是文本内容
         if(message.MsgType == 'text'){
             var createTime = new Date().getTime();
