@@ -17,10 +17,7 @@ var wxapi = {
 
 }
 function WXApi(AS){
-    
     this.AS = AS;
-    // this.action();//直接默认就执行了
-
 }
 
 
@@ -47,15 +44,11 @@ WXApi.prototype.createMenu = function(menu){
 	return new Promise(function(resolve,reject){
 		that.AS.fetchAccessToken().then(function(data){
 			var url = wxapi.menu.create + 'access_token=' + data.access_token;
-			console.log("~~~~~~~~~",url);
-			console.log('~~~~~~',menu);
 			request({url:url,method:'POST',body:menu,json:true}).then(function(response){
 				var _data = response.body;
 				if(_data.errcode === 0){
-					console.log('~~~~~s');
 					resolve(_data.errmsg);
 				}else{
-					console.log('~~~~~f');
 					resolve('err');
 				}
 			}).catch(function(err){
@@ -66,24 +59,18 @@ WXApi.prototype.createMenu = function(menu){
 }
 //获取菜单
 WXApi.prototype.getMenu = function(){
-	console.log('~~~~~~1');
 	var that = this;
 	return new Promise(function(resolve,reject){
-		console.log('~~~~~~2');
 		that.AS.fetchAccessToken().then(function(data){
-			console.log('~~~~~~3');
 			var url = wxapi.menu.get + 'access_token=' + data.access_token;
 			request({url:url,json:true}).then(function(response){
 				var _data = response.body;
 				if(_data.menu){
-					console.log('~~~~~~4');
 					resolve(_data.menu);
 				}else{
-					console.log('~~~~~~5');
 					resolve('err')
 				}
 			}).catch(function(err){
-				console.log('~~~~~~6');
 				reject('err');
 			});
 		});
