@@ -49,7 +49,6 @@ module.exports = function(AS){
 
         //如果别人发送过来的是文本内容
         if(message.MsgType == 'text'){
-            var createTime = new Date().getTime();
             
             // ctx.body = '<xml>'+
             //         '<ToUserName><![CDATA['+ message.FromUserName +']]></ToUserName>'+
@@ -59,7 +58,7 @@ module.exports = function(AS){
             //         '<Content><![CDATA[我们一起玩耍～]]></Content>'+
             //         '</xml>'
 
-            
+            //封装返回
             var content = '我们一起玩耍呀';
             var xml =  await wxApi.replay(content,message);
             ctx.body = xml;
