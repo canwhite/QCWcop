@@ -49,7 +49,7 @@ module.exports = function(AS){
                if(create_data && create_data != 'err'){
                    console.log('创建菜单成功');
                }else{
-                   console.log('创建菜单失败');
+                   console.log('创建菜单失败,注意个人订阅号没有自定义菜单功能');
                }
            }
        }
