@@ -17,6 +17,7 @@ var wxapi = {
 
 }
 function WXApi(AS){
+	
     this.AS = AS;
 }
 

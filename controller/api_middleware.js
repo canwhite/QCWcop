@@ -1,5 +1,5 @@
 var rawBody = require('raw-body');
-var parse_util = require('../utils/parse_xml')
+var parse_util = require('../utils/util_parse_xml')
 var WXApi = require('../model/wx_api');
 var menu = require('../view_json/menu');
 
