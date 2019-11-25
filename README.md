@@ -14,7 +14,7 @@ npm i
 
 1.access_token_management  
 ```
-负责管理access_token如果请求的时候过期了，会自动更新，并且保存到本地access_token_file文件夹下
+负责管理access_token如果请求的时候过期了，并且保存到本地access_token_file文件夹下
 ```  
 
 2.controller
