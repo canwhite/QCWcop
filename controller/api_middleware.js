@@ -24,18 +24,9 @@ module.exports = function(AS){
         //使用xml工具，将xml解析成我们熟悉的对象模式
         var message = await parse_util.parseXMLAsync(data);
         console.log('~~~~~~~~~~~~',message);
-        /*
-            ~~~~~~~~~~~~ {  ToUserName: 'gh_4aa55fc55c91',
-                            FromUserName: 'oWOpF0mzSt93PDGgMT_muURQ4twk',
-                            CreateTime: '1574136143',
-                            MsgType: 'text',
-                            Content: '你好',
-                            MsgId: '22536209720399804' }
 
-        */
-               /*
-            先去获取菜单
-        */
+
+       //先获取菜单
        var menuData = await wxApi.getMenu();
        console.log('~~~~~~~',menuData);
 
@@ -71,17 +62,8 @@ module.exports = function(AS){
             
             var content = '我们一起玩耍呀';
             var xml =  await wxApi.replay(content,message);
-
             ctx.body = xml;
 
-
-
-
         }
-
-
     }
-    
-
-
 }

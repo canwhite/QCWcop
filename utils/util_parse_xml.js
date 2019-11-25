@@ -1,3 +1,12 @@
+        /*
+            ~~~~~~~~~~~~ {  ToUserName: 'gh_4aa55fc55c91',
+                            FromUserName: 'oWOpF0mzSt93PDGgMT_muURQ4twk',
+                            CreateTime: '1574136143',
+                            MsgType: 'text',
+                            Content: '你好',
+                            MsgId: '22536209720399804' }
+
+        */
 var xml2js = require('xml2js');
 //直接通过这一步之后，已经可以看到键值对了，但是值还是数组格式，所以还需要再格式化一下
 exports.parseXMLAsync = function(xml){
