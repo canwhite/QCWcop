@@ -2,35 +2,9 @@ var rawBody = require('raw-body');
 var parse_util = require('../utils/util_parse_xml')
 var WXApi = require('../model/wx_api');
 var menu = require('../view_json/menu');
-
-/*
-判断两个对象是否一致
-*/
-
-function isObjectValueEqual(a, b) {
-    var aProps = Object.getOwnPropertyNames(a);
-    var bProps = Object.getOwnPropertyNames(b);
-  
-    if (aProps.length != bProps.length) {
-      return false;
-    }
-  
-    for (var i = 0; i < aProps.length; i++) {
-      var propName = aProps[i];
-  
-      if(a[propName] instanceof Object ){
-              if(!isObjectValueEqual(a[propName],b[propName])) return false;
-      }
-      else if (a[propName] !== b[propName]) {
-        return false;
-      }
-    }
-    return true;
-}
+var obj_eq = require('../utils/util_obj_equal');
 
 module.exports = function(AS){
-
-
     /*
         （1）在这里接收客户端POST请求发过来的数据
         （2）所有的请求操作都交给wxApi，结果存在Promise里边并返回，在这里通过async/await获取
@@ -66,7 +40,7 @@ module.exports = function(AS){
        console.log('~~~~~~~',menuData);
 
        //如果前比对不一致
-       if(!isObjectValueEqual(menuData,menu)){
+       if(!obj_eq.isObjectValueEqual(menuData,menu)){
            var delete_data = await wxApi.deleteMenu();
            console.log('~~~~~~~',delete_data);
            if(delete_data == 'err'){
